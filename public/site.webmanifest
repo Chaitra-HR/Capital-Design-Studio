@@ -1,0 +1,13 @@
+{
+  "name": "Capital Design Studio",
+  "short_name": "Capital Design",
+  "description": "Positioning, copywriting and web design for financial advisors.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b4cf4",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

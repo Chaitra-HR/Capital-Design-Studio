@@ -1,0 +1,1356 @@
+/*
+ * Desktop frames: ~64em wide x 46em tall (font-size from container width).
+ * Phone frames:   ~19em wide x 40em tall.
+ */
+
+/* Frames ------------------------------------------------------------------ */
+.browser,
+.phone {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #fff;
+}
+
+.page {
+  position: relative;
+  height: 100%;
+  font-family: var(--font-body);
+  font-size: 1.55cqi;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.phonePage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0.9em 1.3em;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 5.25cqi;
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.chev {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.1em;
+  opacity: 0.7;
+}
+
+.arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+}
+
+.arrowUp {
+  transform: rotate(-45deg);
+}
+
+/* 1 · Evergreen (Giga): Instrument Serif ------------------------------------ */
+.evergreen {
+  color: #fff;
+  background: #6b7b95;
+}
+
+.evergreen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(40 55 90 / 0.55) 0%,
+      rgb(60 75 110 / 0.35) 45%,
+      rgb(10 18 32 / 0.8) 100%
+    ),
+    rgb(45 60 95 / 0.2);
+}
+
+.egNav {
+  position: absolute;
+  inset: 1.6em 1.6em auto;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.egGlass {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6em;
+  padding: 0.8em 1.3em;
+  font-size: 0.95em;
+  background: rgb(255 255 255 / 0.14);
+  border: 1px solid rgb(255 255 255 / 0.18);
+  border-radius: 0.6em;
+  backdrop-filter: blur(6px);
+}
+
+.egLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.egLeaf {
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 0 50%;
+  background: #fff;
+}
+
+.egNavRight {
+  display: flex;
+  gap: 0.6em;
+}
+
+.egWhite {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8em 1.3em;
+  border-radius: 0.6em;
+  font-size: 0.95em;
+  color: #1c2433;
+  background: #fff;
+}
+
+.egTitle em {
+  font-style: italic;
+  color: rgb(255 255 255 / 0.9);
+}
+
+.egFeatured {
+  position: absolute;
+  inset: auto 0 7.6em;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.68em;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.egHero {
+  position: absolute;
+  inset: 8.5em 0 auto;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.egBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.5em 1em;
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgb(30 40 60 / 0.35);
+  border-radius: 99em;
+}
+
+.egBadge i {
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.egTitle {
+  margin: 0.55em 0 0;
+  font-family: 'Instrument Serif', serif;
+  font-size: 4.3em;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 24px rgb(20 30 50 / 0.3);
+}
+
+.egSub {
+  margin: 1.1em 0 1.4em;
+  font-size: 1.05em;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.egCta {
+  padding: 0.85em 1.7em;
+  border-radius: 99em;
+  color: #1c2433;
+  background: #fff;
+}
+
+.egLogos {
+  position: absolute;
+  inset: auto 4em 2.4em;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(255 255 255 / 0.78);
+}
+
+.egSpaced {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.egSerif {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.4em;
+  font-style: italic;
+}
+
+.egBold {
+  font-size: 1.25em;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* 2 · Halcyon (Huma): Signifier Light + spaced Söhne caps ------------------ */
+.halcyon {
+  color: #262626;
+  background: #fff;
+}
+
+.hcNav {
+  position: absolute;
+  inset: 1.6em 2.6em auto;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.hcLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-size: 1.25em;
+  letter-spacing: 0.32em;
+}
+
+.hcLogo i {
+  width: 1.1em;
+  height: 1.1em;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  background:
+    linear-gradient(currentColor, currentColor) 50% 30% / 1.5px 70% no-repeat,
+    linear-gradient(currentColor, currentColor) 50% 42% / 70% 1.5px no-repeat;
+}
+
+.hcLinks {
+  display: flex;
+  gap: 2em;
+  margin-left: auto;
+  font-size: 0.72em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #5a5a5a;
+}
+
+.hcBtn {
+  display: inline-block;
+  padding: 0.85em 1.4em;
+  border-radius: 99em;
+  font-size: 0.85em;
+  white-space: nowrap;
+  color: #fff;
+  background: #262626;
+}
+
+.hcCopy {
+  position: absolute;
+  left: 2.6em;
+  top: 7.5em;
+  z-index: 1;
+  width: 24em;
+}
+
+.hcTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 4em;
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.hcTitle em {
+  font-style: italic;
+}
+
+.hcSub {
+  max-width: 19em;
+  margin: 1.3em 0 1.8em;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #666;
+}
+
+.hcActions {
+  display: flex;
+  align-items: center;
+  gap: 1.6em;
+}
+
+.hcTrust {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: 3.4em;
+  padding-top: 1.4em;
+  font-size: 0.8em;
+  color: #777;
+  border-top: 1px solid #ececec;
+}
+
+.hcFaces {
+  display: flex;
+}
+
+.hcFaces img {
+  width: 2.2em;
+  height: 2.2em;
+  margin-left: -0.6em;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.hcFaces img:first-child {
+  margin-left: 0;
+}
+
+.hcLink {
+  padding-bottom: 0.2em;
+  font-size: 0.85em;
+  border-bottom: 1px solid currentColor;
+}
+
+.hcMain {
+  position: absolute;
+  top: 6.4em;
+  right: 2.6em;
+  width: 28em;
+  height: 24em;
+  overflow: hidden;
+  border-radius: 0.3em;
+}
+
+.hcSecond {
+  position: absolute;
+  right: 18em;
+  bottom: 2.6em;
+  width: 15em;
+  height: 12em;
+  overflow: hidden;
+  border-radius: 0.3em;
+  box-shadow: 0 0 0 0.5em #fff;
+}
+
+.hcChip {
+  position: absolute;
+  z-index: 1;
+  max-width: 17em;
+  padding: 0.9em 1.3em;
+  border-radius: 0.6em;
+  font-size: 0.8em;
+  line-height: 1.45;
+  color: #55546a;
+  box-shadow: 0 14px 30px -14px rgb(60 50 120 / 0.4);
+}
+
+.hcChip b {
+  font-weight: 500;
+  color: #262626;
+}
+
+.hcChipA {
+  right: 1.8em;
+  bottom: 9em;
+  background: linear-gradient(110deg, #efeafd 0%, #f6efff 45%, #fde9d9 100%);
+}
+
+.hcChipB {
+  right: 4em;
+  bottom: 3.6em;
+  background: linear-gradient(110deg, #fde3ea 0%, #f3eefb 50%, #d9f3f7 100%);
+}
+
+/* 3 · Ledgerline (Titan): Söhne + Söhne Mono -------------------------------- */
+.ledgerline {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4em 1.6em 0;
+  color: #111;
+  background: #fff;
+}
+
+.llNav {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding-bottom: 1.4em;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.llLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.llLogo i {
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #111 0 30%, #fff 31% 40%, #111 41%);
+  box-shadow: 0 0 0 1.5px #111;
+}
+
+.llPillNav {
+  display: flex;
+  gap: 2em;
+  padding: 0.75em 1.6em;
+  border-radius: 99em;
+  font-size: 0.95em;
+  background: #f1f0ee;
+}
+
+.llRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+  margin-left: auto;
+  font-size: 0.95em;
+}
+
+.llJoin {
+  padding: 0.75em 1.4em;
+  border-radius: 99em;
+  background: #f1f0ee;
+}
+
+.llGrid {
+  display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+}
+
+.llLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2em;
+  padding-right: 2em;
+  border-right: 1px solid #e6e6e6;
+}
+
+.llTitle {
+  text-wrap: balance;
+  margin: 0;
+  font-size: 3.4em;
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.llActions {
+  display: flex;
+  align-items: center;
+  gap: 1.4em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.llBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 1em 1.6em;
+  border-radius: 99em;
+  color: #fff;
+  background: #111;
+}
+
+.llArt {
+  position: relative;
+  margin: 1.6em 0 1.6em 2em;
+  overflow: hidden;
+}
+
+.llPhoto {
+  filter: grayscale(1) contrast(1.25) brightness(1.35);
+  mix-blend-mode: multiply;
+}
+
+.llCopy {
+  margin: 0;
+  padding: 1.2em 2em 1.4em 0;
+  font-size: 1.05em;
+  border-top: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+}
+
+.llStats {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+  gap: 1em;
+  padding: 1.2em 0 1.4em 2em;
+  border-top: 1px solid #e6e6e6;
+}
+
+.llStats > span {
+  display: grid;
+  gap: 0.4em;
+}
+
+.llStatLabel {
+  font-size: 0.8em;
+  white-space: nowrap;
+  color: #666;
+}
+
+.llStats b {
+  font-family: var(--font-mono);
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+/* 4 · Northpoint (Consult): Newsreader + Outfit ----------------------------- */
+.northpoint {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+}
+
+.npPhoto {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.npPhoto::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(25 30 25 / 0.72) 0%,
+    rgb(25 30 25 / 0.25) 55%,
+    transparent 80%
+  );
+}
+
+.npNav {
+  position: absolute;
+  inset: 1.6em 2.4em auto;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.npLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: 'Newsreader', serif;
+  font-size: 1.7em;
+  font-weight: 400;
+}
+
+.npStar {
+  width: 0.7em;
+  height: 0.7em;
+  background: #e8613c;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+}
+
+.npLinks {
+  display: flex;
+  gap: 2.2em;
+  font-size: 0.95em;
+}
+
+.npPill {
+  display: inline-block;
+  justify-self: start;
+  padding: 0.8em 1.4em;
+  border-radius: 99em;
+  font-size: 0.95em;
+  color: #1f2a24;
+  background: #fff;
+}
+
+.npHero {
+  position: absolute;
+  left: 2.4em;
+  bottom: 3em;
+  z-index: 1;
+  display: grid;
+  gap: 1.1em;
+  max-width: 30em;
+}
+
+.npEyebrow {
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.npTitle em {
+  font-style: italic;
+}
+
+.npTitle {
+  text-wrap: balance;
+  margin: 0;
+  font-family: 'Newsreader', serif;
+  font-size: 3.9em;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.npArrows {
+  position: absolute;
+  right: 2.4em;
+  bottom: 3em;
+  z-index: 1;
+  display: flex;
+  gap: 0.8em;
+}
+
+.npArrows i {
+  display: grid;
+  place-items: center;
+  width: 2.6em;
+  height: 2.6em;
+  border: 1px solid rgb(255 255 255 / 0.8);
+  border-radius: 50%;
+}
+
+.npArrows i:first-child .arrow {
+  transform: scaleX(-1);
+}
+
+.npBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+  padding: 1.5em 2.4em;
+  white-space: nowrap;
+  background: #e8613c;
+}
+
+.npBar span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.95em;
+}
+
+.npBar i {
+  width: 0.85em;
+  height: 0.85em;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+/* 5 · Pennant (Sidekick): Figtree ------------------------------------------- */
+.pennant {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Figtree', sans-serif;
+  color: #fff;
+  background: #22104d;
+}
+
+.pnNav {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 1.4em 2.4em;
+  border-bottom: 1px solid rgb(255 255 255 / 0.28);
+}
+
+.pnLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 1.75em;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.pnLogo i {
+  width: 0.55em;
+  height: 0.9em;
+  background: #fff;
+  clip-path: polygon(55% 0, 15% 55%, 45% 55%, 30% 100%, 85% 40%, 55% 40%, 75% 0);
+}
+
+.pnLinks {
+  display: flex;
+  gap: 2.2em;
+  margin: 0 auto;
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+.pnBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
+  gap: 0.7em;
+  padding: 1em 1.5em;
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #1b0f3b;
+  background: #a99bff;
+}
+
+.pnSplit {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pnPhoto {
+  position: relative;
+  overflow: hidden;
+}
+
+.pnCopy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1.5em;
+  padding: 0 2.6em;
+}
+
+.pnTag {
+  padding: 0.45em 1em;
+  border-radius: 99em;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: #1b0f3b;
+  background: #fff;
+}
+
+.pnTitle {
+  text-wrap: balance;
+  margin: 0;
+  font-size: 3.5em;
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+}
+
+.pnPhoto img {
+  object-position: 30% 50%;
+}
+
+.pnFacts {
+  display: flex;
+  gap: 2.2em;
+  margin-top: 0.4em;
+  padding-top: 1.2em;
+  font-size: 0.82em;
+  color: rgb(255 255 255 / 0.7);
+  border-top: 1px solid rgb(255 255 255 / 0.2);
+}
+
+.pnFacts b {
+  display: block;
+  font-size: 1.6em;
+  font-weight: 300;
+  color: #fff;
+}
+
+.pnSub {
+  margin: 0;
+  font-size: 0.98em;
+  font-weight: 300;
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* 6 · Summit (Ridgerunner): DM Sans + DM Mono ------------------------------- */
+.summit {
+  font-family: 'DM Sans', sans-serif;
+  color: #fff;
+  background: #4d5a3a;
+}
+
+.summit::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(30 35 25 / 0.35), transparent 30%, rgb(20 25 15 / 0.55));
+}
+
+.smNav {
+  position: absolute;
+  inset: 1.8em 2.4em auto;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.smNav > b {
+  font-size: 1.25em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.smLinks {
+  display: flex;
+  gap: 1.8em;
+  margin-left: auto;
+  font-size: 0.95em;
+  color: rgb(255 255 255 / 0.85);
+}
+
+.smBtn {
+  display: inline-block;
+  justify-self: start;
+  padding: 0.75em 1.3em;
+  border-radius: 0.3em;
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #1d2318;
+  background: #fff;
+}
+
+.smHero {
+  position: absolute;
+  left: 2.4em;
+  bottom: 3.2em;
+  z-index: 1;
+  display: grid;
+  gap: 1.3em;
+  max-width: 24em;
+}
+
+.smEyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.smTitle {
+  text-wrap: balance;
+  margin: 0;
+  font-size: 2.9em;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.smCard {
+  position: absolute;
+  right: 2.2em;
+  bottom: 2.2em;
+  z-index: 1;
+  display: grid;
+  gap: 1.1em;
+  width: 28em;
+  padding: 1.6em;
+  border-radius: 0.4em;
+  background: rgb(38 36 26 / 0.62);
+  backdrop-filter: blur(10px);
+}
+
+.smClient {
+  font-size: 1.1em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.smStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  padding-bottom: 1.1em;
+  border-bottom: 1px solid rgb(255 255 255 / 0.15);
+}
+
+.smStats > span {
+  display: grid;
+  gap: 0.35em;
+}
+
+.smStats b {
+  font-size: 1.8em;
+  font-weight: 400;
+}
+
+.smStats span span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72em;
+  color: rgb(255 255 255 / 0.65);
+}
+
+.smQuote {
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.smQuote span {
+  color: rgb(255 255 255 / 0.6);
+}
+
+.smPerson {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  font-size: 0.9em;
+}
+
+.smPerson img {
+  width: 2.6em;
+  height: 2.6em;
+  object-fit: cover;
+}
+
+.smPerson small {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8em;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.smRating {
+  margin-left: auto;
+  font-size: 0.85em;
+}
+
+/* Phones ------------------------------------------------------------------ */
+.status {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: 0.8em;
+}
+
+.statusLight {
+  color: #fff;
+}
+
+.island {
+  width: 5em;
+  height: 1.5em;
+  border-radius: 99em;
+  background: #000;
+}
+
+.battery {
+  width: 1.8em;
+  height: 0.9em;
+  border: 1.5px solid currentColor;
+  border-radius: 0.25em;
+}
+
+/* 7 · Kin (Aura): Fraunces Light -------------------------------------------- */
+.kin {
+  gap: 0.75em;
+  color: #1d1d1b;
+  background: #fbfaf6;
+}
+
+.knNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.6em;
+}
+
+.knNav b {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+.knMenu {
+  display: grid;
+  gap: 0.3em;
+}
+
+.knMenu i {
+  width: 1.2em;
+  height: 1.5px;
+  background: currentColor;
+}
+
+.knCta {
+  margin-top: auto;
+  padding: 0.85em;
+  border-radius: 99em;
+  font-size: 0.85em;
+  text-align: center;
+  color: #fbfaf6;
+  background: #1d1d1b;
+}
+
+.knEst {
+  margin-top: 0.4em;
+  font-size: 0.8em;
+  color: #8a8a84;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.knTitle {
+  text-wrap: balance;
+  margin: 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 2em;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+}
+
+.knCard {
+  display: grid;
+  gap: 0.35em;
+  padding: 0.9em;
+  border-radius: 0.9em;
+  background: #c6f135;
+}
+
+.knCardTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+}
+
+.knLabel {
+  margin-top: 0.4em;
+  font-size: 0.72em;
+  color: #4d5a1c;
+}
+
+.knScore {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 2.6em;
+  line-height: 1;
+}
+
+.knScore small {
+  font-size: 0.5em;
+}
+
+.knTabs {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72em;
+  color: #4d5a1c;
+}
+
+.knTabs b {
+  color: #1d1d1b;
+  font-weight: 500;
+}
+
+.knPhoto {
+  position: relative;
+  height: 8em;
+  object-position: 50% 18%;
+  border-radius: 0.6em;
+}
+
+.knStat {
+  font-size: 0.8em;
+  color: #8a8a84;
+}
+
+.knStat b {
+  font-family: 'Fraunces', serif;
+  font-size: 2em;
+  font-weight: 300;
+  color: #1d1d1b;
+}
+
+/* 8 · Tally (app landing): Source Serif 4 + IBM Plex Mono ----------------- */
+.tally {
+  gap: 0.75em;
+  color: #1c1c1e;
+  background: #f4f4f6;
+}
+
+.tyNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.6em;
+  font-size: 0.85em;
+}
+
+.tyNav b {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.45em;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.tyNav b i {
+  width: 0.65em;
+  height: 0.65em;
+  background: #111;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+}
+
+.tyMono {
+  margin-top: 0.4em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66em;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #8a8a92;
+}
+
+.tyTitle {
+  margin: 0;
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.95em;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.tySub {
+  margin: 0;
+  font-size: 0.82em;
+  color: #55555c;
+}
+
+.tyPill {
+  align-self: flex-start;
+  padding: 0.75em 1.3em;
+  border-radius: 99em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #f8b4f5;
+}
+
+.tyCard {
+  display: grid;
+  gap: 0.5em;
+  margin-top: 0.4em;
+  padding: 0.9em 0.9em 1em;
+  border-radius: 0.9em;
+  background: #fff;
+  box-shadow: 0 16px 30px -20px rgb(30 30 40 / 0.35);
+}
+
+.tyCard .tyMono {
+  margin: 0;
+}
+
+.tyPlot {
+  position: relative;
+  height: 8.5em;
+  border-bottom: 1px solid #e3e3e8;
+}
+
+.tyPlot svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tyDot {
+  position: absolute;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tyAxis {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.66em;
+}
+
+.tyInsight {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  padding-top: 0.6em;
+  font-size: 0.72em;
+  line-height: 1.35;
+  border-top: 1px solid #ececf0;
+}
+
+.tyIcon {
+  position: relative;
+  flex-shrink: 0;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 50%;
+  background: #f8b4f5;
+}
+
+.tyIcon::after {
+  content: '';
+  position: absolute;
+  inset: 0.5em;
+  background: #111;
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0 50%);
+}
+
+/* 9 · Rooted (In Tandem): Young Serif + Outfit, full-bleed photo ---------- */
+.rooted {
+  font-family: 'Outfit', sans-serif;
+  color: #fff;
+  background: #4a2433;
+}
+
+.rtPhoto {
+  inset: 0 0 auto;
+  height: 70%;
+  object-position: 45% 30%;
+}
+
+.rooted::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(40 15 25 / 0.45) 0%,
+    transparent 20%,
+    transparent 42%,
+    rgb(61 26 41 / 0.85) 62%,
+    #3d1a29 70%,
+    #3d1a29 100%
+  );
+}
+
+.rtNav,
+.rtHero {
+  position: relative;
+  z-index: 1;
+}
+
+.rtNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8em;
+}
+
+.rtNav b {
+  font-family: 'Young Serif', serif;
+  font-size: 1.35em;
+  font-weight: 400;
+}
+
+.rtMenu {
+  display: grid;
+  gap: 0.3em;
+}
+
+.rtMenu i {
+  width: 1.3em;
+  height: 1.5px;
+  background: #fff;
+}
+
+.rtHero {
+  display: grid;
+  gap: 0.75em;
+  margin-top: auto;
+  padding-bottom: 0.6em;
+}
+
+.rtTag {
+  justify-self: start;
+  padding: 0.4em 0.8em;
+  border-radius: 99em;
+  font-size: 0.68em;
+  letter-spacing: 0.04em;
+  background: rgb(255 255 255 / 0.18);
+  backdrop-filter: blur(6px);
+}
+
+.rtTitle {
+  margin: 0;
+  font-family: 'Young Serif', serif;
+  font-size: 2.2em;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.rtSub {
+  margin: 0 0 0.3em;
+  font-size: 0.85em;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.rtBtn {
+  padding: 0.85em;
+  border-radius: 99em;
+  font-size: 0.85em;
+  font-weight: 500;
+  text-align: center;
+  color: #4a2433;
+  background: #ffd9c7;
+}
+
+.rtLink {
+  font-size: 0.8em;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}

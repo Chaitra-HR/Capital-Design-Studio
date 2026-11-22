@@ -1,0 +1,162 @@
+/* Same visual language as Quick check: white page, centred header, #fafafa cards */
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: 3.5rem;
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+  text-align: center;
+}
+
+/* Header ------------------------------------------------------------------- */
+.header {
+  display: grid;
+  justify-items: center;
+}
+
+/* Plain-text eyebrow */
+.pill {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.title {
+  max-width: 16em;
+  margin-top: 1rem;
+  font-size: var(--text-section);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.title em {
+  font-style: italic;
+}
+
+/* Lead: same body style as the Quick check subheading */
+.lead {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-muted);
+  text-wrap: balance;
+}
+
+.lead strong {
+  font-weight: var(--weight-medium);
+  color: var(--color-fg);
+}
+
+/* Word-by-word blur to focus, scrubbed by scroll where supported */
+@keyframes word-in {
+  from {
+    opacity: 0.12;
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+:global(.reveal-scroll) .words > span {
+  animation: word-in linear both;
+  animation-timeline: view();
+  animation-range: entry calc(25% + var(--w) * 1.6%) cover calc(38% + var(--w) * 1.6%);
+}
+
+/* Fix cards ---------------------------------------------------------------- */
+.fixes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 54rem;
+}
+
+.fixes > li {
+  display: flex;
+}
+
+.fix {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1.25rem;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #ececef;
+  border-radius: 0.75rem;
+}
+
+.fixTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-fg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+}
+
+.icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.fixNo {
+  color: var(--color-muted);
+}
+
+.fixTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.fixText {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+/* Closing line --------------------------------------------------------------- */
+.closing {
+  max-width: 34rem;
+  margin: 0;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Tablets keep the three cards side by side; only phones stack them */
+@media (max-width: 600px) {
+  .fixes {
+    grid-template-columns: 1fr;
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .inner {
+    gap: 2.5rem;
+  }
+
+  .title {
+    font-size: var(--text-section);
+  }
+}

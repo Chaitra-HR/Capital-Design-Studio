@@ -1,0 +1,339 @@
+.hero {
+  --focus-ring: #fff;
+  /* Space outside the framed content column: always present on desktop/tablet,
+     growing to fill the space beside the 1200px column on wide screens */
+  --side-w: max(var(--frame-gap), calc((100% - var(--container-max)) / 2));
+  --frame-bottom: calc(3 * clamp(0.75rem, 1.4vw, 1.125rem)); /* frame ends where the bands begin */
+  position: relative;
+  overflow: hidden;
+  /* Slides up under the floating navbar */
+  margin-top: calc(var(--header-height) * -1);
+  padding-top: calc(var(--header-height) + clamp(3rem, 6vw, 4.5rem));
+  color: var(--color-on-brand);
+  background:
+    radial-gradient(ellipse 70% 60% at 100% 100%, rgb(0 30 170 / 0.3), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgb(0 30 170 / 0.2), transparent 70%),
+    var(--color-brand);
+}
+
+/* Content column sits inside the frame */
+.content {
+  width: auto;
+  max-width: none;
+  margin-inline: var(--side-w);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Trust pill */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0.25rem 0.875rem 0.25rem 0.25rem;
+  font-size: var(--text-xs);
+  color: rgb(255 255 255 / 0.88);
+  background: rgb(255 255 255 / 0.1);
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: var(--radius-pill);
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatar {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: -0.6rem;
+  object-fit: cover;
+  border: 2px solid var(--color-brand);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.avatar:first-child {
+  margin-left: 0;
+}
+
+/* Headline + lead */
+.title {
+  max-width: 12em;
+  margin-top: 1.5rem;
+  font-size: var(--text-display);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+}
+
+.title em {
+  font-style: italic;
+  letter-spacing: -0.03em;
+}
+
+.lead {
+  max-width: 38rem;
+  margin: 1.5rem 0 0;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* Benefits with ticks */
+.benefits {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.75rem;
+  margin-top: 1.75rem;
+}
+
+.benefits li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.01em;
+}
+
+.check {
+  display: grid;
+  place-items: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  color: var(--color-brand);
+  background: #fff;
+}
+
+.check svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  stroke-width: 2.5;
+}
+
+.cta {
+  margin-top: 2rem;
+}
+
+/* Logo cloud */
+.logos {
+  width: 100%;
+  margin-top: clamp(3.5rem, 7vw, 4.5rem);
+}
+
+.logosCaption {
+  margin: 0;
+  color: rgb(255 255 255 / 0.65);
+}
+
+/* One moving line; the outer logos fade out like Design Me */
+.logoCloud {
+  margin-top: 1.75rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.logoTrack {
+  display: flex;
+  width: max-content;
+  /* ~40px per second, matching the previews */
+  animation: logo-marquee 38s linear infinite;
+}
+
+.logoCloud:hover .logoTrack,
+.logoCloud[data-paused] .logoTrack {
+  animation-play-state: paused;
+}
+
+.logoSet {
+  display: flex;
+  align-items: center;
+  gap: 2.75rem;
+  padding-inline-end: 2.75rem;
+}
+
+@keyframes logo-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoTrack {
+    width: auto;
+    animation: none;
+  }
+
+  .logoSet {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.25rem 2.5rem;
+    padding: 0;
+  }
+
+  .logoSet[aria-hidden] {
+    display: none;
+  }
+
+  .logoCloud {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  font-weight: var(--weight-medium);
+  font-size: 1.0625rem;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
+  color: rgb(255 255 255 / 0.7);
+  transition: color 0.2s;
+}
+
+.logo svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.logo:hover {
+  color: #fff;
+}
+
+/* Entrance: content rises in, one step after another */
+.reveal {
+  position: relative;
+  z-index: 2;
+  /* Quick enough that the headline is readable almost at once */
+  animation: rise 0.8s var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Stepped bands that hand the blue over to the page */
+.bands {
+  position: relative;
+  height: calc(3 * clamp(0.75rem, 1.4vw, 1.125rem));
+  background: linear-gradient(
+    to bottom,
+    var(--color-brand-bright) 0 33.34%,
+    var(--color-brand-300) 33.34% 66.67%,
+    var(--color-brand-100) 66.67% 100%
+  );
+}
+
+/* Phones and small tablets: a compact, centred stack like Orix Creative's
+   mobile hero — narrow lead, ticks wrapping in rows, bigger logos */
+@media (max-width: 760px) {
+  .hero {
+    padding-top: calc(var(--header-height) + 2.25rem);
+  }
+
+  .content {
+    padding-inline: 1rem;
+  }
+
+  .badge {
+    gap: 0.5rem;
+    padding-right: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .avatar {
+    width: 1.375rem;
+    height: 1.375rem;
+    margin-left: -0.55rem;
+  }
+
+  .avatar:first-child {
+    margin-left: 0;
+  }
+
+  .title {
+    max-width: 10.5em;
+    margin-top: 1.25rem;
+    font-size: clamp(2.25rem, 8.5vw, 3.25rem);
+    line-height: 1.06;
+  }
+
+  .lead {
+    max-width: min(30rem, 88%);
+    margin-top: 1.125rem;
+    font-size: clamp(0.9375rem, 2.6vw, 1.0625rem);
+    line-height: 1.6;
+    color: rgb(255 255 255 / 0.78);
+  }
+
+  .benefits {
+    max-width: 26rem;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .benefits li {
+    font-size: 0.9375rem;
+  }
+
+  .check {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .cta {
+    margin-top: 1.75rem;
+  }
+
+  .logos {
+    margin-top: 3.25rem;
+  }
+
+  /* Same mono label as desktop, wrapped to two balanced lines */
+  .logosCaption {
+    max-width: 22rem;
+    margin-inline: auto;
+    line-height: 1.7;
+    text-wrap: balance;
+  }
+
+  .logoCloud {
+    margin-top: 1.5rem;
+  }
+
+  .logoSet {
+    gap: 2.25rem;
+    padding-inline-end: 2.25rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .logo svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}

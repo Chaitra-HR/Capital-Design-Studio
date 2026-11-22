@@ -1,0 +1,47 @@
+/*
+ * Only the cuts the site uses are loaded. Files live in /public/fonts as subset WOFF2.
+ * Add a cut here (and convert it) only when a design actually needs it.
+ */
+
+/* Signifier: headlines */
+@font-face {
+  font-family: 'Signifier';
+  src: url('/fonts/signifier-300.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Signifier';
+  src: url('/fonts/signifier-300-italic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Söhne: body copy */
+@font-face {
+  font-family: 'Sohne';
+  src: url('/fonts/sohne-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sohne';
+  src: url('/fonts/sohne-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Söhne Mono: eyebrows, labels */
+@font-face {
+  font-family: 'Sohne Mono';
+  src: url('/fonts/sohne-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

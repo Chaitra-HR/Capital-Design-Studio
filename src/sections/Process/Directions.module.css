@@ -1,0 +1,500 @@
+/*
+ * Phase 2 scene: three homepage directions for the same firm, laid out like a
+ * presentation board. Two set-aside directions sit out of focus; the chosen
+ * one is sharp, with its palette and the client's reactions.
+ */
+.board {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  align-items: start;
+  gap: 1.1em;
+  padding: 1.6em 1.4em 2em;
+}
+
+/* Pale backdrop that fades out at the edges */
+.board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #f6f5f1;
+  -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent);
+  mask-image: radial-gradient(closest-side, #000 62%, transparent);
+}
+
+.column {
+  position: relative;
+  display: grid;
+  gap: 0.8em;
+}
+
+.muted {
+  margin-top: 22%;
+  opacity: 0.7;
+  filter: blur(2px) saturate(0.85);
+}
+
+.chosen {
+  z-index: 1;
+}
+
+.mat {
+  padding: 7%;
+  background: #ece6da;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 1.5;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #fff;
+  box-shadow: 0 0.5em 1.2em -0.6em rgb(20 15 10 / 0.25);
+}
+
+.frameShort {
+  aspect-ratio: 2.2;
+}
+
+.palette {
+  display: flex;
+  height: 6.5em;
+}
+
+.palette span {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  padding: 0.6em 0.5em;
+  font-family: var(--font-mono);
+  font-size: 0.4em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(0 0 0 / 0.5);
+}
+
+.palette span:nth-child(-n + 2) {
+  color: rgb(255 255 255 / 0.75);
+}
+
+.chosen .palette span:nth-child(3) {
+  color: rgb(255 255 255 / 0.85);
+}
+
+/* Reactions */
+.bubble {
+  position: absolute;
+  z-index: 4;
+  padding: 0.55em 1.1em;
+  font-size: 0.9em;
+  font-weight: var(--weight-medium);
+  color: #fff;
+  white-space: nowrap;
+  border-radius: 99em;
+  box-shadow: 0 0.8em 1.6em -0.7em rgb(10 20 40 / 0.45);
+}
+
+.bubbleFounder {
+  top: 21%;
+  right: -2.4em;
+  background: #2f9ab5;
+}
+
+.bubbleDesigner {
+  top: 38%;
+  right: -1.4em;
+  background: #c43be0;
+}
+
+.cFeels,
+.cAgreed {
+  font-size: 1.45em;
+}
+
+.cFeels {
+  top: 15%;
+  right: 4.4em;
+  animation: nudge 3.2s ease-in-out infinite;
+}
+
+.cAgreed {
+  top: 32%;
+  right: 2.8em;
+  animation: nudge 3.8s ease-in-out 0.6s infinite;
+}
+
+@keyframes nudge {
+  50% {
+    transform: translate(-0.25em, -0.2em);
+  }
+}
+
+/* Second screens for the set-aside directions */
+.secA,
+.secB {
+  justify-content: center;
+  gap: 1em;
+}
+
+.secA p {
+  font-size: 1.9em;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.secCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6em;
+}
+
+.secCards i {
+  height: 3.2em;
+  background: #eef2ec;
+}
+
+.secB small {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.66em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c9a46a;
+}
+
+.secB p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 2.6em;
+  line-height: 1;
+}
+
+.secB em {
+  font-style: italic;
+}
+
+/* Mock pages ------------------------------------------------------------------ */
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4% 5.5%;
+  font-size: 2.2cqi;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page p {
+  margin: 0;
+}
+
+.nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.links {
+  display: flex;
+  gap: 1.4em;
+  margin-left: auto;
+  font-size: 0.75em;
+  opacity: 0.6;
+}
+
+/* 01 · Modern */
+.modern {
+  font-family: 'Figtree', sans-serif;
+  color: #14201a;
+  background: #fff;
+}
+
+.modernLogo {
+  font-size: 1.3em;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.modernHero {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 6%;
+}
+
+.modernTitle {
+  font-size: 3.2em;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.modernCard {
+  display: grid;
+  gap: 0.4em;
+  padding: 1.2em;
+  background: #eef2ec;
+}
+
+.modernCard small {
+  font-size: 0.65em;
+  opacity: 0.6;
+}
+
+.modernCard b {
+  font-size: 2.6em;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.modernCard > i {
+  display: block;
+  height: 0.35em;
+  background: #d6ddd3;
+}
+
+.modernCard > i > i {
+  display: block;
+  width: 82%;
+  height: 100%;
+  background: #14201a;
+}
+
+/* 02 · Quiet */
+.quiet {
+  color: #efe6d2;
+  background: #0f2a24;
+}
+
+.quietPhoto {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%);
+  mask-image: linear-gradient(90deg, transparent, #000 45%);
+}
+
+.quietLogo {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7em;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+}
+
+.quietHero {
+  position: relative;
+  max-width: 60%;
+  margin: auto 0 7%;
+}
+
+.quietHero p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 3.8em;
+  line-height: 0.95;
+}
+
+.quietHero em {
+  font-style: italic;
+}
+
+/* C · Human (chosen): the Northpoint palette from Phase 3, Newsreader over Outfit */
+.hLogo i {
+  width: 0.7em;
+  height: 0.7em;
+  background: #e8613c;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+}
+
+.human {
+  font-family: 'Outfit', sans-serif;
+  color: #1f2a24;
+  background: #f6f3ec;
+}
+
+.hNav {
+  gap: 1.2em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid rgb(31 42 36 / 0.1);
+}
+
+.hLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-family: 'Newsreader', serif;
+  font-size: 1.4em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.hLinks {
+  display: flex;
+  gap: 1.6em;
+  margin-left: auto;
+  font-size: 0.7em;
+  color: #4d5a52;
+}
+
+.hBtn {
+  padding: 0.65em 1.15em;
+  font-size: 0.7em;
+  font-weight: 500;
+  white-space: nowrap;
+  color: #f6f3ec;
+  background: #1f2a24;
+  border-radius: 0.4em;
+}
+
+.hHero {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 7%;
+  min-height: 0;
+  padding: 4% 0 1%;
+}
+
+.hCopy small {
+  font-size: 0.68em;
+  font-weight: 500;
+  color: #e8613c;
+}
+
+.hTitle {
+  margin: 0.4em 0 0.45em !important;
+  font-family: 'Newsreader', serif;
+  font-size: 3.5em;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.hTitle em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.hText {
+  max-width: 23em;
+  margin-bottom: 1.3em !important;
+  font-size: 0.78em;
+  line-height: 1.55;
+  color: #4d5a52;
+}
+
+.hActions {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+}
+
+.hLink {
+  font-size: 0.7em;
+  font-weight: 500;
+}
+
+.hTrust {
+  display: block;
+  margin-top: 1.6em;
+  padding-top: 0.9em;
+  font-size: 0.62em;
+  letter-spacing: 0.02em;
+  color: #6c7670;
+  border-top: 1px solid rgb(31 42 36 / 0.1);
+}
+
+.hPhoto {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0.9em;
+}
+
+.hPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+
+.hPhoto figcaption {
+  position: absolute;
+  bottom: 0.8em;
+  left: 0.8em;
+  display: grid;
+  padding: 0.55em 0.8em;
+  font-size: 0.58em;
+  color: #4d5a52;
+  background: rgb(246 243 236 / 0.94);
+  border-radius: 0.5em;
+}
+
+.hPhoto figcaption b {
+  font-weight: 500;
+  color: #1f2a24;
+}
+
+/* Second screen: photo card and navy card */
+.hSplit {
+  flex-direction: row;
+  gap: 3%;
+  padding: 3.5%;
+}
+
+.hSplitPhoto,
+.hSplitCard {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0.9em;
+}
+
+.hSplitPhoto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hSplitCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.1em;
+  padding: 0 8%;
+  color: #f6f3ec;
+  background: #1f2a24;
+}
+
+.hSplitCard p {
+  font-family: 'Newsreader', serif;
+  font-size: 2em;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.hSplitCard em {
+  font-style: italic;
+  font-weight: 400;
+  color: #f29a6b;
+}
+
+.hSplitCard span {
+  font-size: 0.72em;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cFeels,
+  .cAgreed {
+    animation: none;
+  }
+}

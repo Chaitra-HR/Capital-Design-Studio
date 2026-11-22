@@ -1,0 +1,177 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease-out),
+    box-shadow 0.2s var(--ease-out),
+    filter 0.2s var(--ease-out);
+}
+
+/* Personal CTA ---------------------------------------------------------------
+   Rest: the label. Hover/focus: it rolls up and away while the founder's photo
+   and "+ you = clarity" roll in. The pill keeps one width throughout. */
+.button {
+  overflow: hidden;
+}
+
+/* Plain buttons: the copy rolling in is the same label, so no gap is needed */
+.faceSame {
+  gap: 0;
+}
+
+.talk.lg {
+  padding-inline: 1.15rem;
+}
+
+.faces {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.faceMain,
+.faceAlt {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  transition:
+    transform 0.5s var(--ease-out),
+    opacity 0.4s var(--ease-out);
+}
+
+.faceAlt {
+  gap: 0.55em;
+  opacity: 0;
+  transform: translateY(120%);
+}
+
+.faceAlt img {
+  width: 1.9em;
+  height: 1.9em;
+  max-width: none;
+  margin-block: -0.6em;
+  object-fit: cover;
+  border-radius: 50%;
+  transform: scale(0.5) rotate(-20deg);
+  transition: transform 0.55s var(--ease-out) 0.05s;
+}
+
+.button:hover .faceMain,
+.button:focus-visible .faceMain {
+  opacity: 0;
+  transform: translateY(-120%);
+}
+
+.button:hover .faceAlt,
+.button:focus-visible .faceAlt {
+  opacity: 1;
+  transform: none;
+}
+
+.talk:hover .faceAlt img,
+.talk:focus-visible .faceAlt img {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faceMain,
+  .faceAlt,
+  .faceAlt img {
+    transition: none;
+  }
+}
+
+/* Sizes */
+.md {
+  min-height: 2.5rem;
+  padding: 0.625rem 1.125rem;
+  font-size: var(--text-sm);
+}
+
+.lg {
+  min-height: 2.625rem;
+  padding: 0.7rem 1.2rem;
+  font-size: var(--text-sm);
+}
+
+/* Primary: brand blue with a soft top-to-bottom gradient, a bright top edge,
+   a fine outline and layered blue glow beneath */
+.primary {
+  color: #fff;
+  background: linear-gradient(180deg, #2a63f7 0%, #0a44dc 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 0 0 1px rgb(10 68 220 / 0.8),
+    0 2px 4px rgb(10 68 220 / 0.2),
+    0 4px 12px rgb(10 68 220 / 0.25),
+    0 8px 24px rgb(10 68 220 / 0.2);
+}
+
+.primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.26),
+    0 0 0 1px rgb(10 68 220 / 0.85),
+    0 3px 6px rgb(10 68 220 / 0.22),
+    0 6px 16px rgb(10 68 220 / 0.28),
+    0 12px 30px rgb(10 68 220 / 0.22);
+}
+
+/* Light: white pill for dark/brand backgrounds, with the same layered finish
+   as the blue button: soft white-to-pearl gradient, bright top edge, fine
+   outline and a stacked shadow beneath */
+.light {
+  color: var(--color-fg);
+  background: linear-gradient(180deg, #fff 0%, #eef1f8 100%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgb(10 20 60 / 0.06),
+    0 0 0 1px rgb(255 255 255 / 0.7),
+    0 2px 4px rgb(0 18 90 / 0.18),
+    0 4px 12px rgb(0 18 90 / 0.22),
+    0 8px 24px rgb(0 18 90 / 0.18);
+}
+
+.light:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #fff 0%, #f3f5fb 100%);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgb(10 20 60 / 0.06),
+    0 0 0 1px rgb(255 255 255 / 0.85),
+    0 3px 6px rgb(0 18 90 / 0.2),
+    0 6px 16px rgb(0 18 90 / 0.25),
+    0 12px 30px rgb(0 18 90 / 0.2);
+}
+
+.primary:active,
+.light:active {
+  transform: translateY(0);
+  filter: brightness(0.97);
+}
+
+/* Link: text with underline, inherits colour */
+.link {
+  min-height: 2.5rem;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  background: none;
+}
+
+.link:hover {
+  opacity: 0.85;
+}

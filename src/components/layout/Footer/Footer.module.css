@@ -1,0 +1,115 @@
+.footer {
+  margin-top: auto;
+  overflow-x: clip;
+}
+
+/* Guides on the same column as the sections above, never on the screen edge */
+.inner {
+  max-width: none;
+  margin-inline: max(var(--frame-gap), calc((100% - var(--container-max)) / 2));
+  width: auto;
+  border-inline: 1px solid var(--color-border);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.brand {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 1.25rem;
+}
+
+.tagline {
+  max-width: 20em;
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.heading {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+}
+
+.links {
+  display: grid;
+  gap: 0.625rem;
+  font-size: var(--text-sm);
+}
+
+.links a {
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Tiny "Coming soon" tag beside a link, matching the navbar */
+.withTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.15rem 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  background: var(--color-brand-50);
+  border-radius: 0.25rem;
+}
+
+/* Full-width rule with small dots on the column edges, matching the section dividers */
+.bottomRule {
+  position: relative;
+  border-top: 1px solid var(--color-border);
+}
+
+.bottom {
+  position: relative;
+  padding-block: 1.25rem;
+  color: var(--color-muted);
+}
+
+.dot {
+  position: absolute;
+  top: -3px;
+  width: 5px;
+  height: 5px;
+  background: #a1a1aa;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.dotLeft {
+  left: calc(max(var(--frame-gap), (100% - var(--container-max)) / 2) - 2px);
+}
+
+.dotRight {
+  right: calc(max(var(--frame-gap), (100% - var(--container-max)) / 2) - 2px);
+}
+
+@media (max-width: 760px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+}

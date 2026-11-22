@@ -1,0 +1,101 @@
+.showcase {
+  --shot-h: clamp(16rem, 27vw, 23.75rem);
+  --gap: clamp(0.875rem, 2vw, 1.875rem);
+  position: relative;
+  z-index: 2;
+  margin: clamp(3.5rem, 7vw, 5rem) var(--side-w, 0px) 0;
+}
+
+/* Framed between the guides; only the left and right edges fade */
+.viewport {
+  /* Show the top ~78% of each card; the rest is cut off where the bands
+     begin, so the previews feel tucked behind them */
+  height: calc(var(--shot-h) * 0.78 + 0.5rem);
+  overflow: hidden;
+  padding-top: 0.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 100s linear infinite; /* ~40px per second for 9 previews */
+}
+
+.viewport:hover .track,
+.viewport[data-paused] .track {
+  animation-play-state: paused;
+}
+
+.set {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.5rem;
+  gap: var(--gap);
+  padding-inline-end: var(--gap);
+}
+
+.set li {
+  transition: transform 0.4s var(--ease-out);
+}
+
+.set li:hover {
+  transform: translateY(-4px);
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.toggle {
+  position: absolute;
+  right: var(--gutter);
+  top: -2.75rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0 0.25rem;
+  border: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-on-brand-muted);
+  background: none;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--color-on-brand);
+}
+
+.toggle svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+
+  .viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-inline: var(--gutter);
+  }
+
+  .set li {
+    scroll-snap-align: center;
+  }
+
+  .set[aria-hidden],
+  .toggle {
+    display: none;
+  }
+}

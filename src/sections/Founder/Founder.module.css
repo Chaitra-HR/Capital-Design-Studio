@@ -1,0 +1,121 @@
+/*
+ * Founder intro on black, with a pixel-dither texture that gathers at the
+ * edges (like the reference) and leaves the centre clean for reading.
+ */
+.section {
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+}
+
+/* Contained dark card with the same ink, glow and dither as the testimonials */
+.card {
+  --focus-ring: #fff;
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  display: grid;
+  justify-items: center;
+  margin: 0 auto;
+  padding: clamp(2.75rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem);
+  color: #fff;
+  text-align: center;
+  background: radial-gradient(70% 55% at 50% 0%, rgb(11 76 244 / 0.1), transparent 70%), #0b0e15;
+}
+
+/* Pixel dither, thinned in noisy patches. The patch mask drifts slowly, so
+   the same dots fade in and out as clusters pass over them. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7'%3E%3Crect width='1.6' height='1.6' fill='%23fff'/%3E%3C/svg%3E");
+  background-size: 7px 7px;
+  opacity: 0.2;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='2' seed='5' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.4' numOctaves='1' seed='16' stitchTiles='stitch' result='b'/%3E%3CfeComposite in='a' in2='b' operator='arithmetic' k2='1' k3='.6' k4='0.24'/%3E%3CfeColorMatrix type='luminanceToAlpha'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23f%29'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='2' seed='5' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.4' numOctaves='1' seed='16' stitchTiles='stitch' result='b'/%3E%3CfeComposite in='a' in2='b' operator='arithmetic' k2='1' k3='.6' k4='0.24'/%3E%3CfeColorMatrix type='luminanceToAlpha'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23f%29'/%3E%3C/svg%3E");
+  -webkit-mask-size: 560px 560px;
+  mask-size: 560px 560px;
+  pointer-events: none;
+  animation: dither-drift 48s linear infinite;
+}
+
+@keyframes dither-drift {
+  to {
+    -webkit-mask-position: 560px -560px;
+    mask-position: 560px -560px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card::before {
+    animation: none;
+  }
+}
+
+/* Same pill as the other sections, in a dark version */
+/* Plain-text eyebrow */
+.pill {
+  margin: 0;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: var(--text-section);
+  line-height: 1.12;
+  color: #fff;
+  text-wrap: balance;
+}
+
+.title em {
+  font-style: italic;
+}
+
+.text {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: rgb(255 255 255 / 0.68);
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.person img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 2px solid rgb(255 255 255 / 0.15);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.name,
+.role {
+  margin: 0;
+}
+
+.name {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+}
+
+.role {
+  font-size: var(--text-sm);
+  color: rgb(255 255 255 / 0.65);
+}
+
+.cta {
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--text-section);
+  }
+}

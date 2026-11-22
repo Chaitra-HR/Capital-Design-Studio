@@ -1,0 +1,72 @@
+.band {
+  /* Guides and dots sit on the 1200px column, as on Design Me */
+  --band-inset: max(var(--frame-gap), calc((100% - var(--container-max)) / 2));
+  position: relative;
+  isolation: isolate;
+  background: var(--color-bg);
+}
+
+.alt {
+  background: #fafafa;
+}
+
+/* Full-width hairline with small dots where it crosses the guides */
+.rule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  height: 0;
+  border-top: 1px solid var(--color-border);
+  pointer-events: none;
+}
+
+.ruleBottom {
+  top: auto;
+  bottom: 0;
+}
+
+.ruleInner {
+  position: absolute;
+  top: 0;
+  right: var(--band-inset);
+  left: var(--band-inset);
+}
+
+.ruleInner i {
+  position: absolute;
+  top: -3px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a1a1aa;
+}
+
+.ruleInner i:first-child {
+  left: -2px;
+}
+
+.ruleInner i:last-child {
+  right: -2px;
+}
+
+/* Phones: guides move nearer the edge, and framed bands pad their content
+   so text never sits on the lines */
+@media (max-width: 600px) {
+  .framed :global(.container) {
+    padding-inline: calc(var(--band-inset) + 1.25rem);
+  }
+}
+
+/* Guides joining the dots above and below */
+.frame {
+  position: absolute;
+  top: 0;
+  right: var(--band-inset);
+  bottom: 0;
+  left: var(--band-inset);
+  z-index: -1;
+  border-inline: 1px solid var(--color-border);
+  pointer-events: none;
+}

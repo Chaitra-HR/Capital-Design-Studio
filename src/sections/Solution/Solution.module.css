@@ -1,0 +1,380 @@
+/*
+ * Framed grid: full-bleed horizontal hairlines between rows, vertical lines
+ * at the container edges (and between columns), dots on the outer corners only.
+ */
+.section {
+  overflow-x: clip; /* corner dots must not cause sideways scroll */
+  --line: var(--color-border);
+  --pad: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.row {
+  border-top: 1px solid var(--line);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.box {
+  position: relative;
+  /* Same column as the other grids, with a gap to the screen edge on phones */
+  margin-inline: max(var(--frame-gap), calc((100% - var(--container-max)) / 2));
+  border-inline: 1px solid var(--line);
+}
+
+.dot {
+  position: absolute;
+  z-index: 2;
+  width: 5px;
+  height: 5px;
+  background: #a1a1aa;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.top {
+  top: -3px;
+}
+
+.bottom {
+  bottom: -3px;
+}
+
+.dotLeft {
+  left: -3px;
+}
+
+.dotRight {
+  right: -3px;
+}
+
+.strip {
+  height: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* Header ------------------------------------------------------------------- */
+.head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.headLeft {
+  padding: clamp(2rem, 4vw, 2.75rem) var(--pad);
+}
+
+.headRight {
+  display: flex;
+  align-items: center;
+  padding: var(--pad);
+  border-left: 1px solid var(--line);
+}
+
+/* Plain-text eyebrow */
+.label {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.title {
+  margin-top: 1.25rem;
+  font-size: var(--text-h1);
+  line-height: 1.08;
+}
+
+.text {
+  max-width: 30rem;
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.65;
+  color: var(--color-muted);
+}
+
+/* Image -------------------------------------------------------------------- */
+.media {
+  height: clamp(14rem, 26vw, 21rem);
+  /* clip (not hidden) so the page, not this box, drives the scroll animation */
+  overflow: clip;
+}
+
+/* Hands: two aligned layers that start apart and meet as you scroll */
+.hands {
+  position: absolute;
+  inset: 0;
+}
+
+.hand {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 62%;
+}
+
+@keyframes hand-from-left {
+  from {
+    transform: translateX(-38%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hand-from-right {
+  from {
+    transform: translateX(38%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+/* Scrubbed by scroll: they touch as the band reaches the middle of the screen */
+:global(.reveal-scroll) .handLeft {
+  animation: hand-from-left linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 55%;
+}
+
+:global(.reveal-scroll) .handRight {
+  animation: hand-from-right linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 55%;
+}
+
+/* Fallback: slide together once when revealed */
+:global(.reveal-ready) .hand {
+  transition: transform 1.4s var(--ease-out);
+}
+
+:global(.reveal-ready) .hands:not(:global(.is-revealed)) .handLeft {
+  transform: translateX(-38%);
+}
+
+:global(.reveal-ready) .hands:not(:global(.is-revealed)) .handRight {
+  transform: translateX(38%);
+}
+
+.mediaLabel {
+  position: absolute;
+  bottom: 1.1rem;
+  left: var(--pad);
+  z-index: 2;
+  padding: 0.25rem 0.4rem;
+  color: var(--color-muted);
+  background: rgb(255 255 255 / 0.88);
+}
+
+.mediaLabelRight {
+  right: var(--pad);
+  left: auto;
+}
+
+/* Stages ------------------------------------------------------------------- */
+.stages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stage {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  padding: clamp(2rem, 4vw, 3rem) var(--pad);
+}
+
+.stage + .stage {
+  border-left: 1px solid var(--line);
+}
+
+.stageNo {
+  color: var(--color-brand);
+}
+
+.stageTitle {
+  margin-top: 0.5rem;
+  font-size: var(--text-h3);
+  line-height: 1.1;
+}
+
+.stageText {
+  max-width: 20rem;
+  margin: 0;
+  font-size: var(--text-ui);
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* Call to action ------------------------------------------------------------ */
+.ctaBox {
+  border-inline-color: var(--color-brand);
+}
+
+.cta {
+  --focus-ring: #fff;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  padding: clamp(2rem, 4vw, 3rem) var(--pad);
+  color: var(--color-on-brand);
+  background: var(--color-brand);
+}
+
+.ctaText {
+  max-width: 20em;
+  text-wrap: balance;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-display);
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tight);
+}
+
+/* Button with a hand-drawn arrow curling into it from the left */
+.ctaAction {
+  position: relative;
+  display: inline-flex;
+}
+
+.ctaArrow {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 0.75rem);
+  width: 6.5rem;
+  max-width: none;
+  overflow: visible;
+  transform: translateY(-62%);
+  pointer-events: none;
+  fill: none;
+  stroke: rgb(255 255 255 / 0.75);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ctaArrow path {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+/* Draws the curl in one smooth stroke, the head following straight on;
+   holds, fades and starts again */
+.arrowBody,
+.arrowHead {
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.arrowBody {
+  animation-name: arrow-body;
+}
+
+.arrowHead {
+  animation-name: arrow-head;
+}
+
+@keyframes arrow-body {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1);
+  }
+  34%,
+  82% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  96%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes arrow-head {
+  0%,
+  27% {
+    stroke-dashoffset: 1;
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
+  }
+  37%,
+  82% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    animation-timing-function: ease-in-out;
+  }
+  96%,
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaArrow path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Below desktop width the band would wrap unevenly, so it stacks and
+   centres instead, with the arrow still curling in from the left */
+@media (max-width: 1024px) {
+  .cta {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ctaText {
+    margin-inline: auto;
+  }
+
+  .ctaArrow {
+    right: calc(100% + 0.5rem);
+    width: 4.75rem;
+  }
+}
+
+/* Responsive --------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .head {
+    grid-template-columns: 1fr;
+  }
+
+  .headRight {
+    padding-top: 0;
+    padding-bottom: clamp(2rem, 6vw, 3rem);
+    border-left: 0;
+  }
+
+  .stages {
+    grid-template-columns: 1fr;
+  }
+
+  .stage + .stage {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--text-section);
+  }
+
+  .mediaLabel {
+    bottom: 0.75rem;
+  }
+}

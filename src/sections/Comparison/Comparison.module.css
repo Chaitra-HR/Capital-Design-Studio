@@ -1,0 +1,221 @@
+.section {
+  padding-block: clamp(4rem, 7vw, 6rem);
+}
+
+/* Header: same pill + 42px headline as the other sections ------------------ */
+.header {
+  display: grid;
+  justify-items: center;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  text-align: center;
+}
+
+/* Plain-text eyebrow */
+.pill {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: var(--text-section);
+  line-height: 1.12;
+}
+
+.title em {
+  font-style: italic;
+}
+
+/* Comparison table: our column is raised and tinted ------------------------ */
+.frame {
+  max-width: 54rem;
+  margin: 0 auto;
+}
+
+.table {
+  --line: #dcdcdc;
+  --us-line: #c9d4f5;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  padding: 1.35rem 1.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+/* Header row */
+.corner {
+  width: 26%;
+}
+
+.headUs,
+.headOthers {
+  padding-block: 1.25rem !important;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.01em;
+}
+
+.headUs {
+  color: var(--color-fg);
+  background: var(--color-brand-50);
+  border: 1px solid var(--us-line);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+}
+
+.headOthers {
+  color: var(--color-fg);
+  background: transparent;
+}
+
+/* Body: hairline grid with an outer border */
+.table tbody th,
+.table tbody td {
+  border-top: 1px solid var(--line);
+}
+
+.table tbody tr:last-child > * {
+  border-bottom: 1px solid var(--line);
+}
+
+.topic,
+.others {
+  background: #fff;
+}
+
+.topic {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  border-left: 1px solid var(--line);
+}
+
+.us,
+.others {
+  font-size: var(--text-base);
+  line-height: 1.55;
+}
+
+.us {
+  color: var(--color-fg);
+  background: var(--color-brand-50);
+  border-right: 1px solid var(--us-line);
+  border-left: 1px solid var(--line);
+}
+
+.us strong {
+  font-weight: var(--weight-medium);
+}
+
+.others {
+  color: var(--color-muted);
+  border-right: 1px solid var(--line);
+}
+
+/* Tick and cross marks, so each answer can be scanned at a glance */
+.cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.markYes,
+.markNo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-top: 0.05rem;
+  border-radius: 50%;
+}
+
+.markYes {
+  background: var(--color-brand);
+}
+
+.markNo {
+  background: #ececec;
+}
+
+.markYes svg,
+.markNo svg {
+  width: 0.8rem;
+  height: 0.8rem;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.markYes svg {
+  stroke: #fff;
+}
+
+.markNo svg {
+  stroke: #8a8a8a;
+}
+
+/* Phones: keep the three-column table (topic, us, them), just tighter,
+   with each mark sitting above its answer to save width */
+@media (max-width: 700px) {
+  .title {
+    font-size: var(--text-section);
+  }
+
+  .corner {
+    width: 27%;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.9rem 0.7rem;
+  }
+
+  .headUs,
+  .headOthers {
+    padding-block: 0.9rem !important;
+    font-size: var(--text-sm);
+    line-height: 1.3;
+  }
+
+  .headUs {
+    border-radius: 10px 10px 0 0;
+  }
+
+  .topic {
+    padding-inline: 0.6rem !important;
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    hyphens: auto;
+    overflow-wrap: break-word;
+  }
+
+  .us,
+  .others {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .cell {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .markYes,
+  .markNo {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .markYes svg,
+  .markNo svg {
+    width: 0.65rem;
+    height: 0.65rem;
+  }
+}

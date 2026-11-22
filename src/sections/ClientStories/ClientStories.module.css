@@ -1,0 +1,199 @@
+/*
+ * Dark testimonial rail: hairline-outlined cards that run off the right edge,
+ * so the next story peeks in. Arrows slide the rail one card at a time.
+ */
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  color: #fff;
+  /* Deep ink with a hint of the brand blue, a little lighter at the top */
+  background: radial-gradient(70% 55% at 50% 0%, rgb(11 76 244 / 0.1), transparent 70%), #0b0e15;
+}
+
+/* Pixel dither, thinned in noisy patches. The patch mask drifts slowly, so
+   the same dots fade in and out as clusters pass over them. */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='7'%3E%3Crect width='1.6' height='1.6' fill='%23fff'/%3E%3C/svg%3E");
+  background-size: 7px 7px;
+  opacity: 0.2;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='2' seed='5' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.4' numOctaves='1' seed='16' stitchTiles='stitch' result='b'/%3E%3CfeComposite in='a' in2='b' operator='arithmetic' k2='1' k3='.6' k4='0.24'/%3E%3CfeColorMatrix type='luminanceToAlpha'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23f%29'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='560'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.006' numOctaves='2' seed='5' stitchTiles='stitch' result='a'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.4' numOctaves='1' seed='16' stitchTiles='stitch' result='b'/%3E%3CfeComposite in='a' in2='b' operator='arithmetic' k2='1' k3='.6' k4='0.24'/%3E%3CfeColorMatrix type='luminanceToAlpha'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23f%29'/%3E%3C/svg%3E");
+  -webkit-mask-size: 560px 560px;
+  mask-size: 560px 560px;
+  pointer-events: none;
+  animation: dither-drift 48s linear infinite;
+}
+
+@keyframes dither-drift {
+  to {
+    -webkit-mask-position: 560px -560px;
+    mask-position: 560px -560px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section::before {
+    animation: none;
+  }
+}
+
+/* Header ------------------------------------------------------------------- */
+.header {
+  display: grid;
+  justify-items: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: rgb(255 255 255 / 0.55);
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: var(--text-section);
+  line-height: 1.12;
+}
+
+.title em {
+  font-style: italic;
+}
+
+/* Grid: four hairline cards, two per row ---------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  background: #10141d;
+}
+
+.quote {
+  max-width: 17em;
+  margin: 0;
+  padding: 0 0 0 0.45em;
+  font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
+}
+
+.quote p {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  line-height: 1.18;
+  letter-spacing: var(--tracking-tight);
+  text-wrap: pretty;
+}
+
+/* Hanging open quote, like the reference */
+.mark {
+  position: absolute;
+  right: 100%;
+  padding-right: 0.08em;
+}
+
+.quote em {
+  font-style: italic;
+}
+
+/* Footer: portrait beside name and role, under a hairline */
+.person {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+}
+
+.photo {
+  display: block;
+  flex-shrink: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+
+/* Placeholder until a real portrait is added */
+.initials {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: var(--weight-display);
+  color: rgb(255 255 255 / 0.8);
+  background: #1a1f2a;
+}
+
+.personText {
+  display: grid;
+  gap: 0.2rem;
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.personText strong {
+  font-weight: var(--weight-medium);
+}
+
+.personText span {
+  font-size: var(--text-xs);
+  color: rgb(255 255 255 / 0.6);
+}
+
+/* Bands: deep navy up to the brand blue, like the hero's hand-over */
+.bands {
+  display: grid;
+  margin-top: clamp(3.5rem, 6vw, 5rem);
+}
+
+.bands span {
+  height: clamp(0.75rem, 1.4vw, 1.125rem);
+}
+
+.bands span:nth-child(1) {
+  background: #0f1d4a;
+}
+
+.bands span:nth-child(2) {
+  background: #0a2c8f;
+}
+
+.bands span:nth-child(3) {
+  background: var(--color-brand);
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: var(--text-section);
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+}
